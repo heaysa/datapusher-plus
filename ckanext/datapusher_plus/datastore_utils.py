@@ -309,8 +309,16 @@ def get_scheming_yaml(
     if not package:
         raise utils.JobError("Package not found")
 
-    scheming_yaml = tk.get_action("scheming_dataset_schema_show")(
-        {"ignore_auth": True}, {"type": scheming_yaml_type}
+    ## import directly because get_action fails for some reason. Alan
+    ## Heays 2025-10-10
+    from ckanext.scheming.logic import scheming_dataset_schema_show
+    scheming_yaml = scheming_dataset_schema_show(
+        {"ignore_auth": True},
+        {"type": scheming_yaml_type}
     )
+    
+    ### scheming_yaml = tk.get_action("scheming_dataset_schema_show")(
+        ### {"ignore_auth": True}, {"type": scheming_yaml_type}
+    ### )
 
     return scheming_yaml, package
