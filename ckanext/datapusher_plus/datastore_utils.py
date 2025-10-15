@@ -159,6 +159,7 @@ def send_resource_to_datastore(
             "calculate_record_count": calculate_record_count,
         }
     try:
+        return                  #  DEBUG
         resource_dict = tk.get_action("datastore_create")(
             {"ignore_auth": True}, request
         )
