@@ -159,28 +159,10 @@ def send_resource_to_datastore(
             "calculate_record_count": calculate_record_count,
         }
     try:
-
-        from pprint import pformat #  DEBUG
-        import logging             #  DEBUG
-        log = logging.getLogger(__name__) #  DEBUG
-        if resource is None:    #  DEBUG
-            resource = tk.get_action("resource_show")(context, {'id':resource_id}) #  DEBUG
-        package_id = resource['package_id'] #  DEBUG
-        result = tk.get_action("package_show")(context, {'id':package_id}) #  DEBUG
-        log.error('XXX BEFORE')           #  DEBUG
-        log.error(pformat(result))        #  DEBUG
-
-        
-
-        
+        return                  #  DEBUG
         resource_dict = tk.get_action("datastore_create")(
             {"ignore_auth": True}, request
         )
-
-        result = tk.get_action("package_show")(context, {'id':package_id}) #  DEBUG
-        log.error('XXX AFTER')           #  DEBUG
-        log.error(pformat(result))        #  DEBUG
-
         return resource_dict
     except Exception as e:
         raise utils.JobError("Error sending data to datastore ({!s}).".format(e))
