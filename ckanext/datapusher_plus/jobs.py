@@ -224,6 +224,8 @@ def _push_to_datastore(
         api_token = utils.get_dp_plus_user_apitoken()
         headers["Authorization"] = api_token
 
+        logger.debug("DEBUG: A: "+repr(headers)) # DEBUG
+
         # If the ckan_url differs from this url, rewrite this url to the ckan
         # url. This can be useful if ckan is behind a firewall.
         if not resource_url.startswith(ckan_url):
@@ -247,8 +249,16 @@ def _push_to_datastore(
                 "http": conf.DOWNLOAD_PROXY,
                 "https": conf.DOWNLOAD_PROXY,
             }
+
+        logger.debug("DEBUG: B: "+repr(resource_url)) # DEBUG
+        logger.debug("DEBUG: B: "+repr( kwargs)) # DEBUG
+
+
+
         with requests.get(resource_url, **kwargs) as response:
             response.raise_for_status()
+            logger.debug("DEBUG: C: "+repr(response)) #  DEBUG
+
 
             cl = response.headers.get("content-length")
             max_content_length = conf.MAX_CONTENT_LENGTH
