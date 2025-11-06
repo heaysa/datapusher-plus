@@ -217,7 +217,6 @@ def _push_to_datastore(
 
     # fetch the resource data
     logger.info(f"Fetching from: {resource_url}...")
-    logger.info(f"XXX",resource.get("url_type"))
     headers: Dict[str, str] = {}
     if resource.get("url_type") == "upload":
         # If this is an uploaded file to CKAN, authenticate the request,
