@@ -248,14 +248,14 @@ def _push_to_datastore(
                 "https": conf.DOWNLOAD_PROXY,
             }
 
-        logger.debug("datpusher-plus resource download request:")
-        logger.debug("    {resource_url=")
+        logger.info("datpusher-plus resource download request:")
+        logger.info("    {resource_url=")
         for tkey in kwargs:
-            logger.debug(f"    {tkey}: {kwargs[tkey]}")
+            logger.info(f"    {tkey}: {kwargs[tkey]}")
 
         with requests.get(resource_url, **kwargs) as response:
-            logger.debug("datpusher-plus resource download response:")
-            logger.debug(f"    {response!r}")
+            logger.info("datpusher-plus resource download response:")
+            logger.info(f"    {response!r}")
             response.raise_for_status()
             cl = response.headers.get("content-length")
             max_content_length = conf.MAX_CONTENT_LENGTH
